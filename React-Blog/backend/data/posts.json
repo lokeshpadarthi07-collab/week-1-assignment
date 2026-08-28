@@ -1,0 +1,124 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Mastering React 19: Server Components, Actions & Performance",
+      "excerpt": "Explore the latest breakthroughs in React 19 including native server components, useActionState, optimistic updates, and seamless streaming.",
+      "content": "React 19 marks a pivotal evolution in client-side and full-stack JavaScript architectures. With server components now deeply integrated, developers can stream HTML directly from the server without delivering large client bundles. Furthermore, Actions eliminate boilerplate code for form state mutations and error handling. In this guide, we dive deep into how React 19 optimizes memory consumption, simplifies async state management, and improves Largest Contentful Paint (LCP) performance metrics across modern web applications.",
+      "category": "React",
+      "author": {
+        "name": "Sarah Chen",
+        "role": "Principal UI Architect",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+      },
+      "date": "Aug 24, 2026",
+      "readTime": "6 min read",
+      "tags": ["React", "JavaScript", "Frontend", "Performance"],
+      "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80",
+      "likes": 142,
+      "views": 2840,
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Building Scalable Design Systems with Tailwind CSS & Tokens",
+      "excerpt": "Learn how to establish reusable CSS token hierarchies, enforce dark mode consistency, and accelerate UI development.",
+      "content": "A robust design system is the backbone of engineering velocity. By standardizing color palettes, typography scales, and spacing tokens, engineering teams maintain high visual fidelity across dozens of micro-frontends. This article breaks down atomic design patterns, custom Tailwind plugin integrations, and accessibility compliance tactics using ARIA roles and contrast ratios.",
+      "category": "Design System",
+      "author": {
+        "name": "Marcus Vance",
+        "role": "Lead Product Designer",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+      },
+      "date": "Aug 22, 2026",
+      "readTime": "4 min read",
+      "tags": ["CSS", "Design System", "UI/UX", "Tailwind"],
+      "imageUrl": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
+      "likes": 98,
+      "views": 1620,
+      "featured": false
+    },
+    {
+      "id": 3,
+      "title": "Integrating AI & LLMs into Modern Web Applications",
+      "excerpt": "A practical guide to connecting frontend React applications with streaming AI APIs, function calling, and local vector embeddings.",
+      "content": "Artificial intelligence is no longer restricted to backend scripts. Today's web applications harness real-time LLM inference, client-side vector search, and structured JSON output to deliver hyper-personalized user experiences. Learn how to manage streamed response buffers in React state, build responsive chat UIs, and optimize token latency.",
+      "category": "AI & ML",
+      "author": {
+        "name": "Elena Rostova",
+        "role": "AI Solutions Engineer",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+      },
+      "date": "Aug 20, 2026",
+      "readTime": "8 min read",
+      "tags": ["AI", "LLM", "Python", "Full Stack"],
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+      "likes": 210,
+      "views": 4150,
+      "featured": true
+    },
+    {
+      "id": 4,
+      "title": "Modern State Management: Zustand vs Context vs Redux Toolkit",
+      "excerpt": "Comparing lightweight state management models with traditional Redux architectures for high-frequency updates.",
+      "content": "Choosing the right state management solution often dictates app performance and developer experience. While React Context works well for low-frequency global settings like theme or locale, libraries like Zustand offer atomic selector subscriptions that prevent unnecessary component re-renders. We run benchmark tests comparing memory allocations, render cycle speeds, and devtool capabilities.",
+      "category": "React",
+      "author": {
+        "name": "David Kim",
+        "role": "Senior Frontend Developer",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+      },
+      "date": "Aug 18, 2026",
+      "readTime": "5 min read",
+      "tags": ["React", "State Management", "Redux", "Zustand"],
+      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+      "likes": 87,
+      "views": 1930,
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "Optimizing Web Vitals: Achieving 100/100 Lighthouse Scores",
+      "excerpt": "Actionable strategies for reducing bundle sizes, deferring non-critical assets, and eliminating layout shifts.",
+      "content": "Core Web Vitals directly impact user retention and SEO ranking. In this comprehensive breakdown, we analyze real-world case studies demonstrating how lazy loading offscreen images, optimizing dynamic import boundaries, and tuning font rendering strategies reduced Interaction to Next Paint (INP) times from 240ms to under 40ms.",
+      "category": "Web Dev",
+      "author": {
+        "name": "Sarah Chen",
+        "role": "Principal UI Architect",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+      },
+      "date": "Aug 15, 2026",
+      "readTime": "7 min read",
+      "tags": ["Performance", "Web Vitals", "Lighthouse", "SEO"],
+      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      "likes": 175,
+      "views": 3200,
+      "featured": false
+    },
+    {
+      "id": 6,
+      "title": "Serverless API Architectures with Node.js & Cloud Functions",
+      "excerpt": "Deploying zero-maintenance serverless backends with auto-scaling, JWT security, and low cold-start overhead.",
+      "content": "Serverless computing enables developers to deploy RESTful endpoints without provisioning infrastructure. This tutorial walks through building serverless Node.js handlers, securing endpoints with JSON Web Tokens (JWT), connecting to managed PostgreSQL databases, and setting up deployment pipelines.",
+      "category": "Cloud",
+      "author": {
+        "name": "Alex Rivera",
+        "role": "Cloud DevOps Specialist",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80"
+      },
+      "date": "Aug 12, 2026",
+      "readTime": "6 min read",
+      "tags": ["Node.js", "Serverless", "Cloud", "API"],
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+      "likes": 115,
+      "views": 2100,
+      "featured": false
+    }
+  ],
+  "comments": {
+    "1": [
+      { "id": 101, "author": "Alex Johnson", "text": "React 19 Server Components completely revolutionized our initial page render times!", "date": "2 hours ago" },
+      { "id": 102, "author": "Priya Sharma", "text": "Great breakdown on useActionState! Very helpful explanation.", "date": "1 hour ago" }
+    ]
+  }
+}
