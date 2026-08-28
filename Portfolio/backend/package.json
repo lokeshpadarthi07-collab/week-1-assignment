@@ -1,7 +1,7 @@
 {
-  "name": "react-blog-backend",
+  "name": "portfolio-backend",
   "version": "1.0.0",
-  "description": "Node.js Express backend API for React Blog Application",
+  "description": "Node.js Express backend API for Portfolio website contact form and projects",
   "main": "server.js",
   "type": "module",
   "scripts": {

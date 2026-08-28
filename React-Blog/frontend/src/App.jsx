@@ -49,10 +49,30 @@ export function App() {
   const [newCommentText, setNewCommentText] = useState('');
   const [newCommentAuthor, setNewCommentAuthor] = useState('');
 
+  // API Base URL
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   // Sync theme to root element
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Fetch posts from backend API if available
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/posts`)
+      .then((res) => {
+        if (!res.ok) throw new Error('API server returned error status');
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPosts(data);
+        }
+      })
+      .catch((err) => {
+        console.warn('Backend API connection offline or unreached, running in local fallback mode:', err);
+      });
+  }, [API_BASE_URL]);
 
   // Derive Categories dynamically
   const categories = useMemo(() => {
@@ -108,6 +128,8 @@ export function App() {
 
   // 3. Handlers
   const handleLikePost = (id) => {
+    const isAlreadyLiked = likedPosts.has(id);
+
     setLikedPosts((prev) => {
       const next = new Set(prev);
       if (next.has(id)) {
@@ -119,6 +141,19 @@ export function App() {
       }
       return next;
     });
+
+    fetch(`${API_BASE_URL}/api/posts/${id}/like`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ isLiked: isAlreadyLiked })
+    })
+      .then((res) => res.json())
+      .then((updated) => {
+        setPosts((prev) =>
+          prev.map((p) => (p.id === id ? { ...p, likes: updated.likes } : p))
+        );
+      })
+      .catch((err) => console.warn('Could not sync like with backend:', err));
   };
 
   const handleBookmarkPost = (id) => {
@@ -146,10 +181,13 @@ export function App() {
     e.preventDefault();
     if (!newCommentText.trim() || !activePost) return;
 
+    const author = newCommentAuthor.trim() || 'Community Reader';
+    const text = newCommentText.trim();
+
     const comment = {
       id: Date.now(),
-      author: newCommentAuthor.trim() || 'Community Reader',
-      text: newCommentText.trim(),
+      author,
+      text,
       date: 'Just now'
     };
 
@@ -158,32 +196,62 @@ export function App() {
       [activePost.id]: [...(prev[activePost.id] || []), comment]
     }));
 
+    fetch(`${API_BASE_URL}/api/posts/${activePost.id}/comments`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ author, text })
+    }).catch((err) => console.warn('Could not sync comment with backend:', err));
+
     setNewCommentText('');
     showToast('💬 Comment posted!');
   };
 
   const handleCreatePost = (formData) => {
-    const newPost = {
-      id: Date.now(),
+    const payload = {
       title: formData.title,
       excerpt: formData.excerpt,
       content: formData.content || formData.excerpt,
       category: formData.category || 'React',
-      author: {
-        name: formData.authorName || 'Guest Contributor',
-        role: 'Community Writer',
-        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80'
-      },
-      date: 'Just now',
-      readTime: `${Math.ceil((formData.content?.length || 200) / 300)} min read`,
+      authorName: formData.authorName || 'Guest Contributor',
+      authorRole: 'Community Writer',
+      readTime: Math.ceil((formData.content?.length || 200) / 300),
       tags: formData.tags ? formData.tags.split(',').map((t) => t.trim()) : ['React', 'Web'],
-      imageUrl: formData.imageUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
-      likes: 1,
-      views: 12,
-      featured: false
+      imageUrl: formData.imageUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80'
     };
 
-    setPosts([newPost, ...posts]);
+    fetch(`${API_BASE_URL}/api/posts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then((res) => res.json())
+      .then((newPost) => {
+        setPosts((prev) => [newPost, ...prev]);
+      })
+      .catch((err) => {
+        console.warn('Backend API connection offline, creating post in local state:', err);
+        const fallbackPost = {
+          id: Date.now(),
+          title: formData.title,
+          excerpt: formData.excerpt,
+          content: formData.content || formData.excerpt,
+          category: formData.category || 'React',
+          author: {
+            name: formData.authorName || 'Guest Contributor',
+            role: 'Community Writer',
+            avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80'
+          },
+          date: 'Just now',
+          readTime: `${Math.ceil((formData.content?.length || 200) / 300)} min read`,
+          tags: formData.tags ? formData.tags.split(',').map((t) => t.trim()) : ['React', 'Web'],
+          imageUrl: formData.imageUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+          likes: 0,
+          views: 1,
+          featured: false
+        };
+        setPosts((prev) => [fallbackPost, ...prev]);
+      });
+
     setIsCreateModalOpen(false);
     showToast('🚀 Article published successfully!');
   };

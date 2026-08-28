@@ -2,8 +2,8 @@
 
 This repository contains two projects built for the Week 1 Assignment:
 
-1. **Portfolio Website** (`Portfolio/`)
-2. **React Blog UI Application** (`React-Blog/`)
+1. **Portfolio Website** ()
+2. **React Blog UI Application** ()
 
 ---
 
