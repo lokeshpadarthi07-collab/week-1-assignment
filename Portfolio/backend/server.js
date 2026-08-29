@@ -15,6 +15,11 @@ const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.json({
+    message: "Portfolio Backend API is running 🚀"
+  });
+});
 
 const messagesFilePath = path.join(__dirname, 'data', 'messages.json');
 
