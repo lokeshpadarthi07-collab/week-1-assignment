@@ -1,17 +1,630 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DevPulse | Modern React Engineering Blog</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padarthi Lokesh Sai Vishnu Vardhan | Full Stack Web Developer & AI/ML Engineer</title>
+  <meta name="description" content="Personal Portfolio of Padarthi Lokesh Sai Vishnu Vardhan - B.Tech CSE (AI & ML) student at SRM Institute of Science and Technology specializing in MERN Stack, Python, Flask, and AI/ML.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Glow & Grid Canvas -->
+  <div class="bg-grid-pattern"></div>
+  <div class="glow-sphere sphere-1"></div>
+  <div class="glow-sphere sphere-2"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">Lokesh<span class="dot">.Padarthi</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#education" class="nav-item">Education</a>
+        <a href="#certifications" class="nav-item">Certifications</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#contact" class="nav-item">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark / Light Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="#contact" class="btn btn-primary nav-cta">Let's Talk</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge fade-in">
+            <span class="pulse-dot"></span> B.Tech CSE (AI & ML) • SRM IST (9.47 CGPA)
+          </div>
+          <h1 class="hero-title fade-in">
+            Building Intelligent <span class="text-gradient">Web Applications</span> & Full-Stack Systems.
+          </h1>
+          <p class="hero-typing-subtitle fade-in">
+            I am a <span class="typing-text" id="typing-text">Full-Stack MERN Developer</span><span class="typing-cursor">|</span>
+          </p>
+          <p class="hero-subtitle fade-in">
+            Hi, I'm <strong class="highlight">Padarthi Lokesh Sai Vishnu Vardhan</strong>. An AI/ML undergraduate passionate about building scalable frontend UIs, robust backend APIs, and intelligent data-driven applications.
+          </p>
+
+          <div class="hero-actions fade-in">
+            <a href="#projects" class="btn btn-primary btn-lg">
+              <span>Explore Projects</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="mailto:lokeshpadarthi07@gmail.com?subject=Request%20Resume%20-%20Padarthi%20Lokesh" class="btn btn-outline btn-lg">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span>Download CV</span>
+            </a>
+            <a href="#contact" class="btn btn-outline btn-lg">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Contact Me</span>
+            </a>
+          </div>
+
+          <div class="social-links fade-in">
+            <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" aria-label="GitHub Profile" class="social-btn"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Profile" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="mailto:lokeshpadarthi07@gmail.com" aria-label="Email Me" class="social-btn"><i class="fa-regular fa-envelope"></i></a>
+            <a href="tel:8328345974" aria-label="Call Me" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-in">
+          <div class="hero-card-glass">
+            <div class="code-header">
+              <span class="code-dot red"></span>
+              <span class="code-dot yellow"></span>
+              <span class="code-dot green"></span>
+              <span class="code-title">lokesh_profile.config.js</span>
+              <button class="copy-code-btn" id="copy-code-btn" title="Copy Profile Code"><i class="fa-regular fa-copy"></i></button>
+            </div>
+            <pre class="code-body"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-property">name</span>: <span class="code-string">'Padarthi Lokesh'</span>,
+  <span class="code-property">degree</span>: <span class="code-string">'B.Tech CSE (AI & ML)'</span>,
+  <span class="code-property">institution</span>: <span class="code-string">'SRM IST'</span>,
+  <span class="code-property">cgpa</span>: <span class="code-string">'9.47 / 10'</span>,
+  <span class="code-property">stack</span>: [
+    <span class="code-string">'MERN'</span>, <span class="code-string">'Python'</span>, <span class="code-string">'Flask'</span>, 
+    <span class="code-string">'REST APIs'</span>, <span class="code-string">'SQLite'</span>, <span class="code-string">'AI/ML'</span>
+  ],
+  <span class="code-property">status</span>: <span class="code-string">'Available for Internships 🚀'</span>
+};</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">01. ABOUT ME</span>
+          <h2 class="section-title">Computer Science & AI/ML Undergraduate</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text-content">
+            <h3 class="about-heading">Transforming Logic into Functional Web Solutions</h3>
+            <p>
+              I am a third-year B.Tech Computer Science and Engineering (AI & ML) student at SRM Institute of Science and Technology with a strong passion for Full Stack Web Development and MERN stack engineering.
+            </p>
+            <p>
+              My hands-on experience spans developing responsive frontend user interfaces with React.js, HTML, and CSS, connecting robust Node.js, Express.js, and Flask backend services, and working with MongoDB, MySQL, and SQLite databases to build practical, real-world web applications.
+            </p>
+
+            <div class="stats-row">
+              <div class="stat-card">
+                <span class="stat-number">9.47</span>
+                <span class="stat-label">B.Tech CGPA</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">Certifications</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">MERN</span>
+                <span class="stat-label">Core Stack</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-wrapper">
+            <h3 class="skills-heading">Technical Skills & Expertise</h3>
+            
+            <div class="skill-category">
+              <h4>Frontend Technologies</h4>
+              <div class="skills-tags">
+                <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+                <span class="skill-tag"><i class="fa-brands fa-react"></i> React.js</span>
+                <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+                <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                <span class="skill-tag"><i class="fa-solid fa-mobile-screen"></i> Responsive Design</span>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h4>Backend & Databases</h4>
+              <div class="skills-tags">
+                <span class="skill-tag"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                <span class="skill-tag"><i class="fa-solid fa-server"></i> Express.js</span>
+                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="skill-tag"><i class="fa-solid fa-pepper-hot"></i> Flask</span>
+                <span class="skill-tag"><i class="fa-solid fa-database"></i> MongoDB</span>
+                <span class="skill-tag"><i class="fa-solid fa-database"></i> MySQL</span>
+                <span class="skill-tag"><i class="fa-solid fa-database"></i> SQLite</span>
+                <span class="skill-tag"><i class="fa-solid fa-network-wired"></i> REST APIs</span>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h4>AI/ML & Core CS</h4>
+              <div class="skills-tags">
+                <span class="skill-tag"><i class="fa-solid fa-brain"></i> Artificial Intelligence</span>
+                <span class="skill-tag"><i class="fa-solid fa-robot"></i> Machine Learning</span>
+                <span class="skill-tag"><i class="fa-solid fa-sparkles"></i> Generative AI</span>
+                <span class="skill-tag"><i class="fa-solid fa-diagram-project"></i> DSA</span>
+                <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education-section" id="education">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">02. EDUCATION</span>
+          <h2 class="section-title">Academic Journey</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="timeline">
+          <!-- SRM IST -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-period">2024 – 2028</span>
+              <h3 class="timeline-title">B.Tech in Computer Science and Engineering (AI & ML)</h3>
+              <h4 class="timeline-institution"><i class="fa-solid fa-university"></i> SRM Institute Of Science And Technology</h4>
+              <p class="timeline-description">
+                Third-year undergraduate specializing in Artificial Intelligence, Machine Learning, Database Management Systems, Data Structures & Algorithms, and Full-Stack MERN Web Development.
+              </p>
+              <div class="timeline-highlights">
+                <span class="highlight-chip"><i class="fa-solid fa-award"></i> CGPA: 9.47 / 10</span>
+                <span class="highlight-chip"><i class="fa-solid fa-star"></i> Academic Excellence</span>
+                <span class="highlight-chip"><i class="fa-solid fa-brain"></i> AI & ML Specialization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sri Chaitanya -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-period">2022 – 2024</span>
+              <h3 class="timeline-title">Higher Secondary Education (Intermediate)</h3>
+              <h4 class="timeline-institution"><i class="fa-solid fa-school"></i> Sri Chaitanya Boys Jr College</h4>
+              <p class="timeline-description">
+                Completed Board of Intermediate Education with focused training in Mathematics, Physics, and Chemistry.
+              </p>
+              <div class="timeline-highlights">
+                <span class="highlight-chip"><i class="fa-solid fa-award"></i> Percentage: 93%</span>
+                <span class="highlight-chip"><i class="fa-solid fa-check-double"></i> Distinction</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Montessori -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-school"></i>
+            </div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-period">2021 – 2022</span>
+              <h3 class="timeline-title">Secondary School Certificate (10th Standard)</h3>
+              <h4 class="timeline-institution"><i class="fa-solid fa-book-open"></i> Montessori High School</h4>
+              <p class="timeline-description">
+                Built foundational knowledge in mathematics, science, and computer fundamentals.
+              </p>
+              <div class="timeline-highlights">
+                <span class="highlight-chip"><i class="fa-solid fa-award"></i> Percentage: 90%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section certifications-section" id="certifications">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">03. CERTIFICATIONS</span>
+          <h2 class="section-title">Verified Certifications & Learning</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="certifications-grid">
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-database"></i></div>
+            <div class="cert-info">
+              <h3>Database Management System</h3>
+              <span class="cert-issuer">NPTEL Certified</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="cert-info">
+              <h3>Full Stack Developer Course</h3>
+              <span class="cert-issuer">Specialization Certificate</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-brands fa-react"></i></div>
+            <div class="cert-info">
+              <h3>ReactJS Specialization</h3>
+              <span class="cert-issuer">Frontend Development</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-brands fa-python"></i></div>
+            <div class="cert-info">
+              <h3>Advanced Python</h3>
+              <span class="cert-issuer">Programming Certification</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="cert-info">
+              <h3>Artificial Intelligence</h3>
+              <span class="cert-issuer">AI Fundamentals</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="cert-info">
+              <h3>Machine Learning</h3>
+              <span class="cert-issuer">ML Algorithms & Models</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-sparkles"></i></div>
+            <div class="cert-info">
+              <h3>Generative AI</h3>
+              <span class="cert-issuer">GenAI Principles</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="cert-info">
+              <h3>Build Your Own Static Website</h3>
+              <span class="cert-issuer">Web Engineering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">04. PROJECTS</span>
+          <h2 class="section-title">Featured Web Projects</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="python">Python & Flask</button>
+          <button class="filter-btn" data-filter="js">JavaScript</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Project 1: Stock-AI-Pro -->
+          <article class="project-card glass-card" data-category="python">
+            <div class="project-img-wrapper">
+              <div class="project-preview-graphic project-bg-3">
+                <i class="fa-solid fa-chart-line project-icon"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/lokeshpadarthi07-collab/Stock-AI-Pro---AI-Stock-Predictor" target="_blank" class="overlay-link" title="Open GitHub Repository"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-category">Python & SQLite</span>
+                <span class="featured-tag">Featured</span>
+              </div>
+              <h3 class="project-title">Stock-AI-Pro — AI Stock Predictor</h3>
+              <p class="project-description">
+                Developed a web application using Python, Flask, HTML, CSS, JavaScript, and SQLite to analyze historical stock data and display prediction-based insights. Integrated full-stack frontend, backend, and database functionality.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>Flask</span>
+                <span>SQLite</span>
+                <span>JavaScript</span>
+                <span>HTML/CSS</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/lokeshpadarthi07-collab/Stock-AI-Pro---AI-Stock-Predictor" target="_blank" class="project-link primary"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Hospital Bed ICU Allocation System -->
+          <article class="project-card glass-card" data-category="python">
+            <div class="project-img-wrapper">
+              <div class="project-preview-graphic project-bg-2">
+                <i class="fa-solid fa-hospital-user project-icon"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" class="overlay-link" title="Open GitHub Repository"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-category">Python & Flask</span>
+              </div>
+              <h3 class="project-title">Hospital Bed ICU Allocation System</h3>
+              <p class="project-description">
+                Developed a web-based hospital resource allocation application using Python and Flask to manage bed and ICU availability efficiently. Designed backend allocation logic connected seamlessly with the web interface.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>Flask</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>Backend Logic</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" class="project-link primary"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Chase The Number -->
+          <article class="project-card glass-card" data-category="js">
+            <div class="project-img-wrapper">
+              <div class="project-preview-graphic project-bg-4">
+                <i class="fa-solid fa-gamepad project-icon"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" class="overlay-link" title="Open GitHub Repository"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-category">JavaScript Web App</span>
+              </div>
+              <h3 class="project-title">Chase the Number</h3>
+              <p class="project-description">
+                Built a problem-solving web application using JavaScript featuring interactive logical operations and sequential number challenges. Focused on user interaction, responsive web functionality, and structured problem-solving.
+              </p>
+              <div class="project-tech">
+                <span>JavaScript</span>
+                <span>DOM API</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" class="project-link primary"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">05. CONTACT</span>
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <h3 class="contact-info-title">Let's Connect & Collaborate</h3>
+            <p class="contact-info-desc">
+              I am actively looking for Full Stack Web Development and AI/ML internship opportunities. Feel free to reach out to me via email or phone!
+            </p>
+
+            <div class="info-items">
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                <div class="info-text">
+                  <span>Email</span>
+                  <a href="mailto:lokeshpadarthi07@gmail.com">lokeshpadarthi07@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="info-text">
+                  <span>Phone</span>
+                  <a href="tel:8328345974">+91 8328345974</a>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="info-text">
+                  <span>Institution</span>
+                  <p>SRM Institute Of Science And Technology</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="info-text">
+                  <span>Status</span>
+                  <p>3rd Year B.Tech CSE (AI & ML) • Open for Opportunities</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-socials">
+              <span>Connect on social platforms:</span>
+              <div class="social-links-row">
+                <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:lokeshpadarthi07@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card glass-card">
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-user input-icon"></i>
+                  <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <span class="error-msg" id="name-error">Please enter your name.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-envelope input-icon"></i>
+                  <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-heading input-icon"></i>
+                  <input type="text" id="subject" name="subject" placeholder="Internship Opportunity / Project Inquiry" required>
+                </div>
+                <span class="error-msg" id="subject-error">Please enter a subject.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <div class="input-wrapper textarea-wrapper">
+                  <i class="fa-regular fa-comment-dots input-icon"></i>
+                  <textarea id="message" name="message" rows="4" placeholder="Hello Lokesh, I'd like to discuss..." required></textarea>
+                </div>
+                <span class="error-msg" id="message-error">Please enter a message.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-btn">
+                <span>Send Message</span>
+                <i class="fa-regular fa-paper-plane"></i>
+              </button>
+
+              <div class="form-toast" id="form-toast">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="toast-text">Thank you! Your message has been sent successfully.</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#hero" class="logo">
+          <span class="logo-icon">&lt;/&gt;</span>
+          <span class="logo-text">Padarthi Lokesh<span class="dot"> Sai Vishnu Vardhan</span></span>
+        </a>
+        <p>Full Stack Web Developer & AI/ML Student at SRM Institute Of Science And Technology.</p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="https://react-blog-ui-zeta.vercel.app" target="_blank">React Blog UI</a>
+        <a href="https://github.com/lokeshpadarthi07-collab" target="_blank">GitHub Profile</a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Padarthi Lokesh Sai Vishnu Vardhan. All rights reserved.</p>
+        <a href="#hero" class="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Details Modal -->
+  <div class="project-modal-backdrop" id="project-modal">
+    <div class="project-modal-card glass-card">
+      <button class="project-modal-close" id="project-modal-close" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="project-modal-header">
+        <span class="project-modal-category" id="modal-category">Project Overview</span>
+        <h2 class="project-modal-title" id="modal-title">Project Title</h2>
+      </div>
+      <div class="project-modal-body">
+        <p id="modal-description">Detailed description of the project...</p>
+        <div class="modal-highlights-box">
+          <h4>Key Features & Architecture:</h4>
+          <ul id="modal-highlights"></ul>
+        </div>
+        <div class="modal-tech-box">
+          <h4>Tech Stack & Tools:</h4>
+          <div class="project-tech" id="modal-tech"></div>
+        </div>
+      </div>
+      <div class="project-modal-footer">
+        <a href="#" target="_blank" class="btn btn-primary" id="modal-github-link"><i class="fa-brands fa-github"></i> Open GitHub Repository</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
 </html>
