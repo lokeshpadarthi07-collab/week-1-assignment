@@ -88,17 +88,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Copy Code Snippet Button
+  // 4. Copy Code Snippet & Tab Switcher
+  const codeBodyEl = document.getElementById('code-body');
+  const codeTabs = document.querySelectorAll('.code-tab');
+
+  const snippets = {
+    profile: `<code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-property">name</span>: <span class="code-string">'Padarthi Lokesh'</span>,
+  <span class="code-property">degree</span>: <span class="code-string">'B.Tech CSE (AI & ML)'</span>,
+  <span class="code-property">institution</span>: <span class="code-string">'SRM IST'</span>,
+  <span class="code-property">cgpa</span>: <span class="code-string">'9.47 / 10'</span>,
+  <span class="code-property">status</span>: <span class="code-string">'Available for Internships 🚀'</span>
+};</code>`,
+    stack: `<code>{
+  <span class="code-property">"frontend"</span>: [<span class="code-string">"React.js"</span>, <span class="code-string">"HTML5"</span>, <span class="code-string">"CSS3"</span>],
+  <span class="code-property">"backend"</span>: [<span class="code-string">"Node.js"</span>, <span class="code-string">"Express.js"</span>, <span class="code-string">"Flask"</span>],
+  <span class="code-property">"databases"</span>: [<span class="code-string">"MongoDB"</span>, <span class="code-string">"MySQL"</span>, <span class="code-string">"SQLite"</span>],
+  <span class="code-property">"ai_ml"</span>: [<span class="code-string">"Python"</span>, <span class="code-string">"Machine Learning"</span>, <span class="code-string">"GenAI"</span>]
+}</code>`
+  };
+
+  codeTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      codeTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const tabName = tab.getAttribute('data-tab');
+      if (snippets[tabName] && codeBodyEl) {
+        codeBodyEl.innerHTML = snippets[tabName];
+      }
+    });
+  });
+
   if (copyCodeBtn) {
     copyCodeBtn.addEventListener('click', () => {
-      const codeSnippet = `const developer = {
+      const activeTab = document.querySelector('.code-tab.active');
+      const tabName = activeTab ? activeTab.getAttribute('data-tab') : 'profile';
+      const rawText = tabName === 'stack' ? 
+`{
+  "frontend": ["React.js", "HTML5", "CSS3"],
+  "backend": ["Node.js", "Express.js", "Flask"],
+  "databases": ["MongoDB", "MySQL", "SQLite"],
+  "ai_ml": ["Python", "Machine Learning", "GenAI"]
+}` : `const developer = {
   name: 'Padarthi Lokesh',
   degree: 'B.Tech CSE (AI & ML)',
   institution: 'SRM IST',
   cgpa: '9.47 / 10',
-  stack: ['MERN', 'Python', 'Flask', 'REST APIs', 'SQLite', 'AI/ML']
+  status: 'Available for Internships 🚀'
 };`;
-      navigator.clipboard.writeText(codeSnippet).then(() => {
+
+      navigator.clipboard.writeText(rawText).then(() => {
         const orig = copyCodeBtn.innerHTML;
         copyCodeBtn.innerHTML = '<i class="fa-solid fa-check" style="color:#10b981;"></i> Copied!';
         setTimeout(() => {

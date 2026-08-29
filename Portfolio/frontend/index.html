@@ -6,6 +6,13 @@
   <title>Padarthi Lokesh Sai Vishnu Vardhan | Full Stack Web Developer & AI/ML Engineer</title>
   <meta name="description" content="Personal Portfolio of Padarthi Lokesh Sai Vishnu Vardhan - B.Tech CSE (AI & ML) student at SRM Institute of Science and Technology specializing in MERN Stack, Python, Flask, and AI/ML.">
   
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.png">
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,10 +83,10 @@
               <span>Explore Projects</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="mailto:lokeshpadarthi07@gmail.com?subject=Request%20Resume%20-%20Padarthi%20Lokesh" class="btn btn-outline btn-lg">
-              <i class="fa-solid fa-file-arrow-down"></i>
-              <span>Download CV</span>
-            </a>
+            <button id="resume-btn" class="btn btn-outline btn-lg" type="button">
+              <i class="fa-solid fa-file-lines"></i>
+              <span>Resume</span>
+            </button>
             <a href="#contact" class="btn btn-outline btn-lg">
               <i class="fa-regular fa-paper-plane"></i>
               <span>Contact Me</span>
@@ -88,22 +95,35 @@
 
           <div class="social-links fade-in">
             <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" aria-label="GitHub Profile" class="social-btn"><i class="fa-brands fa-github"></i></a>
-            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Profile" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/lokesh-padarthi-87668134a" target="_blank" aria-label="LinkedIn Profile" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="mailto:lokeshpadarthi07@gmail.com" aria-label="Email Me" class="social-btn"><i class="fa-regular fa-envelope"></i></a>
             <a href="tel:8328345974" aria-label="Call Me" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+          </div>
+
+          <div class="hero-tech-pills fade-in">
+            <span class="tech-pill"><i class="fa-brands fa-react"></i> React.js</span>
+            <span class="tech-pill"><i class="fa-brands fa-node-js"></i> Node.js</span>
+            <span class="tech-pill"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="tech-pill"><i class="fa-solid fa-database"></i> MongoDB</span>
+            <span class="tech-pill"><i class="fa-solid fa-brain"></i> AI & ML</span>
           </div>
         </div>
 
         <div class="hero-visual fade-in">
           <div class="hero-card-glass">
             <div class="code-header">
-              <span class="code-dot red"></span>
-              <span class="code-dot yellow"></span>
-              <span class="code-dot green"></span>
-              <span class="code-title">lokesh_profile.config.js</span>
+              <div class="code-dots">
+                <span class="code-dot red"></span>
+                <span class="code-dot yellow"></span>
+                <span class="code-dot green"></span>
+              </div>
+              <div class="code-tabs">
+                <button class="code-tab active" data-tab="profile">lokesh.js</button>
+                <button class="code-tab" data-tab="stack">stack.json</button>
+              </div>
               <button class="copy-code-btn" id="copy-code-btn" title="Copy Profile Code"><i class="fa-regular fa-copy"></i></button>
             </div>
-            <pre class="code-body"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+            <pre class="code-body" id="code-body"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
   <span class="code-property">name</span>: <span class="code-string">'Padarthi Lokesh'</span>,
   <span class="code-property">degree</span>: <span class="code-string">'B.Tech CSE (AI & ML)'</span>,
   <span class="code-property">institution</span>: <span class="code-string">'SRM IST'</span>,
@@ -116,6 +136,46 @@
 };</code></pre>
           </div>
         </div>
+      </div>
+
+      <!-- Quick Interactive Highlights Banner (Fills initial screen, eliminates empty space) -->
+      <div class="container hero-highlights-container fade-in">
+        <div class="hero-highlight-card">
+          <div class="highlight-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="highlight-details">
+            <span class="highlight-title">SRM IST Chennai</span>
+            <span class="highlight-sub">B.Tech CSE (AI & ML) • 9.47 CGPA</span>
+          </div>
+        </div>
+        <div class="hero-highlight-card">
+          <div class="highlight-icon"><i class="fa-solid fa-code"></i></div>
+          <div class="highlight-details">
+            <span class="highlight-title">Full Stack & AI/ML</span>
+            <span class="highlight-sub">MERN • Python • REST APIs</span>
+          </div>
+        </div>
+        <div class="hero-highlight-card">
+          <div class="highlight-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <div class="highlight-details">
+            <span class="highlight-title">Key Projects</span>
+            <span class="highlight-sub">Stock AI • ICU Bed System • JS Apps</span>
+          </div>
+        </div>
+        <div class="hero-highlight-card">
+          <div class="highlight-icon"><i class="fa-solid fa-certificate"></i></div>
+          <div class="highlight-details">
+            <span class="highlight-title">8+ Certifications</span>
+            <span class="highlight-sub">Web Dev • AI/ML • Python</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator fade-in">
+        <a href="#about" aria-label="Scroll to About Section">
+          <span>Scroll to explore</span>
+          <i class="fa-solid fa-chevron-down bounce-icon"></i>
+        </a>
       </div>
     </section>
 
@@ -148,48 +208,45 @@
                 <span class="stat-label">Certifications</span>
               </div>
               <div class="stat-card">
-                <span class="stat-number">MERN</span>
-                <span class="stat-label">Core Stack</span>
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Featured Projects</span>
               </div>
             </div>
           </div>
 
           <div class="skills-wrapper">
-            <h3 class="skills-heading">Technical Skills & Expertise</h3>
+            <h3 class="skills-heading">Technical Expertise</h3>
             
             <div class="skill-category">
-              <h4>Frontend Technologies</h4>
+              <h4>Languages & Core</h4>
               <div class="skills-tags">
-                <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
-                <span class="skill-tag"><i class="fa-brands fa-react"></i> React.js</span>
                 <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
                 <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-                <span class="skill-tag"><i class="fa-solid fa-mobile-screen"></i> Responsive Design</span>
+                <span class="skill-tag"><i class="fa-brands fa-square-js"></i> JavaScript (ES6+)</span>
+                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="skill-tag"><i class="fa-solid fa-code"></i> C / C++</span>
               </div>
             </div>
 
             <div class="skill-category">
-              <h4>Backend & Databases</h4>
+              <h4>Frameworks & Libraries</h4>
               <div class="skills-tags">
+                <span class="skill-tag"><i class="fa-brands fa-react"></i> React.js</span>
                 <span class="skill-tag"><i class="fa-brands fa-node-js"></i> Node.js</span>
                 <span class="skill-tag"><i class="fa-solid fa-server"></i> Express.js</span>
-                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
                 <span class="skill-tag"><i class="fa-solid fa-pepper-hot"></i> Flask</span>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h4>Databases & Developer Tools</h4>
+              <div class="skills-tags">
                 <span class="skill-tag"><i class="fa-solid fa-database"></i> MongoDB</span>
                 <span class="skill-tag"><i class="fa-solid fa-database"></i> MySQL</span>
                 <span class="skill-tag"><i class="fa-solid fa-database"></i> SQLite</span>
-                <span class="skill-tag"><i class="fa-solid fa-network-wired"></i> REST APIs</span>
-              </div>
-            </div>
-
-            <div class="skill-category">
-              <h4>AI/ML & Core CS</h4>
-              <div class="skills-tags">
-                <span class="skill-tag"><i class="fa-solid fa-brain"></i> Artificial Intelligence</span>
-                <span class="skill-tag"><i class="fa-solid fa-robot"></i> Machine Learning</span>
-                <span class="skill-tag"><i class="fa-solid fa-sparkles"></i> Generative AI</span>
-                <span class="skill-tag"><i class="fa-solid fa-diagram-project"></i> DSA</span>
-                <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+                <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git</span>
+                <span class="skill-tag"><i class="fa-brands fa-github"></i> GitHub</span>
+                <span class="skill-tag"><i class="fa-solid fa-paper-plane"></i> Postman</span>
               </div>
             </div>
           </div>
@@ -202,65 +259,47 @@
       <div class="container">
         <div class="section-header text-center">
           <span class="section-badge">02. EDUCATION</span>
-          <h2 class="section-title">Academic Journey</h2>
+          <h2 class="section-title">Academic Qualifications</h2>
           <div class="title-underline"></div>
         </div>
 
         <div class="timeline">
-          <!-- SRM IST -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <div class="timeline-content glass-card">
-              <span class="timeline-period">2024 – 2028</span>
-              <h3 class="timeline-title">B.Tech in Computer Science and Engineering (AI & ML)</h3>
-              <h4 class="timeline-institution"><i class="fa-solid fa-university"></i> SRM Institute Of Science And Technology</h4>
-              <p class="timeline-description">
-                Third-year undergraduate specializing in Artificial Intelligence, Machine Learning, Database Management Systems, Data Structures & Algorithms, and Full-Stack MERN Web Development.
+          <div class="timeline-item glass-card">
+            <div class="timeline-dot"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="timeline-content">
+              <span class="timeline-period">2023 – Present (Expected Graduation: 2027)</span>
+              <h3 class="timeline-title">B.Tech in Computer Science & Engineering (AI & ML)</h3>
+              <h4 class="timeline-institution">SRM Institute of Science and Technology, Kattankulathur</h4>
+              <p class="timeline-desc">
+                Currently pursuing B.Tech with specialization in Artificial Intelligence and Machine Learning. Maintaining a stellar academic record with a cumulative grade point average of <strong>9.47 / 10</strong>.
               </p>
-              <div class="timeline-highlights">
-                <span class="highlight-chip"><i class="fa-solid fa-award"></i> CGPA: 9.47 / 10</span>
-                <span class="highlight-chip"><i class="fa-solid fa-star"></i> Academic Excellence</span>
-                <span class="highlight-chip"><i class="fa-solid fa-brain"></i> AI & ML Specialization</span>
-              </div>
+              <div class="timeline-badge">CGPA: 9.47 / 10</div>
             </div>
           </div>
 
-          <!-- Sri Chaitanya -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <i class="fa-solid fa-building-columns"></i>
-            </div>
-            <div class="timeline-content glass-card">
-              <span class="timeline-period">2022 – 2024</span>
-              <h3 class="timeline-title">Higher Secondary Education (Intermediate)</h3>
-              <h4 class="timeline-institution"><i class="fa-solid fa-school"></i> Sri Chaitanya Boys Jr College</h4>
-              <p class="timeline-description">
-                Completed Board of Intermediate Education with focused training in Mathematics, Physics, and Chemistry.
+          <div class="timeline-item glass-card">
+            <div class="timeline-dot"><i class="fa-solid fa-school"></i></div>
+            <div class="timeline-content">
+              <span class="timeline-period">2021 – 2023</span>
+              <h3 class="timeline-title">Intermediate Education (Class 12th)</h3>
+              <h4 class="timeline-institution">Tirumala Junior College</h4>
+              <p class="timeline-desc">
+                Completed Board of Intermediate Education coursework with primary focus on Mathematics, Physics, and Chemistry (MPC).
               </p>
-              <div class="timeline-highlights">
-                <span class="highlight-chip"><i class="fa-solid fa-award"></i> Percentage: 93%</span>
-                <span class="highlight-chip"><i class="fa-solid fa-check-double"></i> Distinction</span>
-              </div>
+              <div class="timeline-badge">Percentage: 98.4%</div>
             </div>
           </div>
 
-          <!-- Montessori -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <i class="fa-solid fa-school"></i>
-            </div>
-            <div class="timeline-content glass-card">
-              <span class="timeline-period">2021 – 2022</span>
-              <h3 class="timeline-title">Secondary School Certificate (10th Standard)</h3>
-              <h4 class="timeline-institution"><i class="fa-solid fa-book-open"></i> Montessori High School</h4>
-              <p class="timeline-description">
-                Built foundational knowledge in mathematics, science, and computer fundamentals.
+          <div class="timeline-item glass-card">
+            <div class="timeline-dot"><i class="fa-solid fa-book-open"></i></div>
+            <div class="timeline-content">
+              <span class="timeline-period">2020 – 2021</span>
+              <h3 class="timeline-title">Secondary School Certificate (Class 10th)</h3>
+              <h4 class="timeline-institution">Bhashyam High School</h4>
+              <p class="timeline-desc">
+                Completed secondary school education with top academic performance across core subjects.
               </p>
-              <div class="timeline-highlights">
-                <span class="highlight-chip"><i class="fa-solid fa-award"></i> Percentage: 90%</span>
-              </div>
+              <div class="timeline-badge">GPA: 10.0 / 10.0</div>
             </div>
           </div>
         </div>
@@ -272,72 +311,32 @@
       <div class="container">
         <div class="section-header text-center">
           <span class="section-badge">03. CERTIFICATIONS</span>
-          <h2 class="section-title">Verified Certifications & Learning</h2>
+          <h2 class="section-title">Licenses & Certifications</h2>
           <div class="title-underline"></div>
         </div>
 
-        <div class="certifications-grid">
-          <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-database"></i></div>
-            <div class="cert-info">
-              <h3>Database Management System</h3>
-              <span class="cert-issuer">NPTEL Certified</span>
-            </div>
-          </div>
-
+        <div class="cert-grid">
           <div class="cert-card glass-card">
             <div class="cert-icon"><i class="fa-solid fa-laptop-code"></i></div>
             <div class="cert-info">
-              <h3>Full Stack Developer Course</h3>
-              <span class="cert-issuer">Specialization Certificate</span>
+              <h3>Web Development Course</h3>
+              <span class="cert-issuer">Full-Stack Fundamentals</span>
             </div>
           </div>
 
           <div class="cert-card glass-card">
             <div class="cert-icon"><i class="fa-brands fa-react"></i></div>
             <div class="cert-info">
-              <h3>ReactJS Specialization</h3>
+              <h3>React JS Course</h3>
+              <span class="cert-issuer">Frontend Engineering</span>
+            </div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-icon"><i class="fa-solid fa-code"></i></div>
+            <div class="cert-info">
+              <h3>Responsive Web Design</h3>
               <span class="cert-issuer">Frontend Development</span>
-            </div>
-          </div>
-
-          <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-brands fa-python"></i></div>
-            <div class="cert-info">
-              <h3>Advanced Python</h3>
-              <span class="cert-issuer">Programming Certification</span>
-            </div>
-          </div>
-
-          <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-brain"></i></div>
-            <div class="cert-info">
-              <h3>Artificial Intelligence</h3>
-              <span class="cert-issuer">AI Fundamentals</span>
-            </div>
-          </div>
-
-          <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-robot"></i></div>
-            <div class="cert-info">
-              <h3>Machine Learning</h3>
-              <span class="cert-issuer">ML Algorithms & Models</span>
-            </div>
-          </div>
-
-          <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-sparkles"></i></div>
-            <div class="cert-info">
-              <h3>Generative AI</h3>
-              <span class="cert-issuer">GenAI Principles</span>
-            </div>
-          </div>
-
-          <div class="cert-card glass-card">
-            <div class="cert-icon"><i class="fa-solid fa-globe"></i></div>
-            <div class="cert-info">
-              <h3>Build Your Own Static Website</h3>
-              <span class="cert-issuer">Web Engineering</span>
             </div>
           </div>
         </div>
@@ -356,10 +355,8 @@
         <!-- Filter Controls -->
         <div class="filter-controls">
           <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="python">Python & Flask</button>
-          <button class="filter-btn" data-filter="js">JavaScript</button>
         </div>
-
+        
         <div class="projects-grid" id="projects-grid">
           <!-- Project 1: Stock-AI-Pro -->
           <article class="project-card glass-card" data-category="python">
@@ -511,7 +508,7 @@
               <span>Connect on social platforms:</span>
               <div class="social-links-row">
                 <a href="https://github.com/lokeshpadarthi07-collab" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/lokesh-padarthi-87668134a" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="mailto:lokeshpadarthi07@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
               </div>
             </div>

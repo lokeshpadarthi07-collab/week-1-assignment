@@ -149,7 +149,7 @@ button, input, textarea {
 
 /* Section Common Styling */
 .section {
-  padding: 6rem 0;
+  padding: 4rem 0;
   position: relative;
 }
 
@@ -362,11 +362,98 @@ button, input, textarea {
    04. Hero Section
    -------------------------------------------------------------------------- */
 .hero-section {
-  padding-top: 160px;
-  padding-bottom: 90px;
-  min-height: 100vh;
+  padding-top: 130px;
+  padding-bottom: 40px;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.hero-highlights-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.hero-highlight-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
+  gap: 1rem;
+  backdrop-filter: blur(12px);
+  transition: all var(--transition-normal);
+}
+
+.hero-highlight-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.highlight-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.highlight-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.highlight-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.scroll-indicator {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.scroll-indicator a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.scroll-indicator a:hover {
+  color: var(--accent-secondary);
+}
+
+.bounce-icon {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(6px); }
+  60% { transform: translateY(3px); }
 }
 
 .hero-container {
@@ -438,6 +525,34 @@ button, input, textarea {
   gap: 1rem;
 }
 
+.hero-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.tech-pill:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
 .social-btn {
   width: 44px;
   height: 44px;
@@ -471,10 +586,37 @@ button, input, textarea {
 .code-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1rem;
+  justify-content: space-between;
+  padding: 0.7rem 1rem;
   background: #090d16;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.code-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.code-tab {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: transparent;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.code-tab.active, .code-tab:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .code-dot {
