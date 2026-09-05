@@ -4,11 +4,19 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { connectDB } from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
+import noteRoutes from './routes/noteRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Connect to MongoDB Database
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,9 +24,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Legacy JSON File Reader/Writer for Week 1 Blog Posts
 const dataFilePath = path.join(__dirname, 'data', 'posts.json');
 
-// Helper to read data safely
 const readData = () => {
   try {
     if (!fs.existsSync(dataFilePath)) {
@@ -32,7 +40,6 @@ const readData = () => {
   }
 };
 
-// Helper to write data safely
 const writeData = (data) => {
   try {
     const dataDir = path.dirname(dataFilePath);
@@ -45,18 +52,55 @@ const writeData = (data) => {
   }
 };
 
-// Health Check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'React Blog Backend API', timestamp: new Date().toISOString() });
+// Root Health & Metadata Endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: '🚀 React-Blog & Week 2 Backend Unified REST API is running!',
+    service: 'React Blog Backend + Week 2 REST APIs',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: 'GET /api/health',
+      blog: {
+        posts: 'GET /api/posts',
+        createPost: 'POST /api/posts',
+        likePost: 'POST /api/posts/:id/like',
+        comments: 'GET /api/posts/:id/comments',
+        addComment: 'POST /api/posts/:id/comments'
+      },
+      auth: {
+        register: 'POST /api/auth/register',
+        login: 'POST /api/auth/login',
+        me: 'GET /api/auth/me (Protected)'
+      },
+      tasks: {
+        create: 'POST /api/tasks',
+        getAll: 'GET /api/tasks',
+        getOne: 'GET /api/tasks/:id',
+        update: 'PUT /api/tasks/:id',
+        delete: 'DELETE /api/tasks/:id'
+      },
+      notes: {
+        create: 'POST /api/notes (Protected)',
+        getAll: 'GET /api/notes (Protected)',
+        getOne: 'GET /api/notes/:id (Protected)',
+        update: 'PUT /api/notes/:id (Protected)',
+        delete: 'DELETE /api/notes/:id (Protected)'
+      }
+    }
+  });
 });
 
-// GET /api/posts - Fetch all blog posts
+// Health Check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', service: 'React Blog & Week 2 Backend API', timestamp: new Date().toISOString() });
+});
+
+// --- WEEK 1 BLOG POSTS REST API ROUTES ---
 app.get('/api/posts', (req, res) => {
   const db = readData();
   res.json(db.posts);
 });
 
-// POST /api/posts - Create a new blog post
 app.post('/api/posts', (req, res) => {
   const { title, excerpt, content, category, authorName, authorRole, readTime, tags, imageUrl } = req.body;
 
@@ -88,11 +132,9 @@ app.post('/api/posts', (req, res) => {
   db.posts.unshift(newPost);
   writeData(db);
 
-  console.log(`[React Blog Backend] Created new post ID: ${newPost.id} - ${newPost.title}`);
   res.status(201).json(newPost);
 });
 
-// POST /api/posts/:id/like - Toggle post likes
 app.post('/api/posts/:id/like', (req, res) => {
   const postId = Number(req.params.id);
   const db = readData();
@@ -113,7 +155,6 @@ app.post('/api/posts/:id/like', (req, res) => {
   res.json({ id: post.id, likes: post.likes, liked: !isLiked });
 });
 
-// GET /api/posts/:id/comments - Fetch comments for a post
 app.get('/api/posts/:id/comments', (req, res) => {
   const postId = req.params.id;
   const db = readData();
@@ -121,7 +162,6 @@ app.get('/api/posts/:id/comments', (req, res) => {
   res.json(comments);
 });
 
-// POST /api/posts/:id/comments - Add a comment to a post
 app.post('/api/posts/:id/comments', (req, res) => {
   const postId = String(req.params.id);
   const { author, text } = req.body;
@@ -148,6 +188,17 @@ app.post('/api/posts/:id/comments', (req, res) => {
   res.status(201).json(newComment);
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 React-Blog Backend running on http://localhost:${PORT}`);
+// --- WEEK 2 REST API ROUTES (AUTH, TASKS, NOTES) ---
+app.use('/api/auth', authRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/notes', noteRoutes);
+
+// Error Middlewares
+app.use(notFound);
+app.use(errorHandler);
+
+const server = app.listen(PORT, () => {
+  console.log(`🚀 React-Blog & Week 2 Backend running on http://localhost:${PORT}`);
 });
+
+export default app;

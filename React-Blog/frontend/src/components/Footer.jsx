@@ -38,7 +38,7 @@ export const Footer = ({ onCategorySelect, categories = [] }) => {
           <div className="footer-social-icons">
             <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
             <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><Twitter size={18} /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
+            <a href="https://www.linkedin.com/in/lokesh-padarthi-87668134a" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
           </div>
         </div>
 
