@@ -3,3 +3,5 @@ dist/
 .DS_Store
 *.log
 .env
+React-Blog/backend/uploads/*
+!React-Blog/backend/uploads/.gitkeep

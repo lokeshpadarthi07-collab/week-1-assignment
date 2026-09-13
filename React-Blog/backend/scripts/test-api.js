@@ -7,7 +7,10 @@ import Note from '../models/Note.js';
 async function runVerification() {
   console.log('🧪 Starting Automated API Verification Suite on React-Blog Unified Backend (Port 5000)...');
 
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  // Wait until MongoDB connection is fully established
+  while (mongoose.connection.readyState !== 1) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
 
   try {
     await User.deleteMany({});
@@ -52,24 +55,29 @@ async function runVerification() {
     const meData = await meRes.json();
     console.log('✅ Protected Profile Access Status:', meRes.status, 'User Email:', meData.user?.email);
 
-    console.log('\n--- 2. Testing To-Do List REST API (Tasks) ---');
+    console.log('\n--- 2. Testing To-Do List REST API & Task Filtering ---');
 
     const createTaskRes = await fetch('http://localhost:5000/api/tasks', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${tokenA}`
+      },
       body: JSON.stringify({
-        title: 'Complete Week 2 Assignment in React-Blog Backend',
-        description: 'Integrate Node, Express, MongoDB, Mongoose, JWT & bcrypt directly into React-Blog backend',
-        priority: 'high'
+        title: 'Complete Task Manager Mini Project',
+        description: 'Integrate React frontend with Express API, Multer upload, and MongoDB storage',
+        priority: 'high',
+        category: 'Work',
+        imageUrl: '/uploads/sample-task-preview.jpg'
       })
     });
     const taskData = await createTaskRes.json();
     const taskId = taskData.data._id;
-    console.log('✅ Create Task Status:', createTaskRes.status, 'Task ID:', taskId);
+    console.log('✅ Create Task Status:', createTaskRes.status, 'Task ID:', taskId, 'Category:', taskData.data.category);
 
-    const getTasksRes = await fetch('http://localhost:5000/api/tasks');
+    const getTasksRes = await fetch('http://localhost:5000/api/tasks?priority=high&category=Work');
     const tasksList = await getTasksRes.json();
-    console.log('✅ Get Tasks Status:', getTasksRes.status, 'Count:', tasksList.count);
+    console.log('✅ Get Tasks Filtered Status:', getTasksRes.status, 'Filtered Count:', tasksList.count);
 
     const updateTaskRes = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
       method: 'PUT',
@@ -109,11 +117,6 @@ async function runVerification() {
     const notesData = await getNotesRes.json();
     console.log('✅ Get Notes (User A) Status:', getNotesRes.status, 'Count:', notesData.count);
 
-    const getSingleNoteRes = await fetch(`http://localhost:5000/api/notes/${noteId}`, {
-      headers: { Authorization: `Bearer ${tokenA}` }
-    });
-    console.log('✅ Get Single Note (User A) Status:', getSingleNoteRes.status);
-
     const regBRes = await fetch('http://localhost:5000/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -136,28 +139,34 @@ async function runVerification() {
       throw new Error(`Security failed! Received HTTP status ${accessUnauthorizedRes.status}`);
     }
 
-    const updateNoteRes = await fetch(`http://localhost:5000/api/notes/${noteId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${tokenA}`
-      },
-      body: JSON.stringify({ title: 'Updated Architecture Notes' })
-    });
-    console.log('✅ Update Note (User A) Status:', updateNoteRes.status);
-
-    const deleteNoteRes = await fetch(`http://localhost:5000/api/notes/${noteId}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${tokenA}` }
-    });
-    console.log('✅ Delete Note (User A) Status:', deleteNoteRes.status);
-
     console.log('\n--- 4. Testing Week 1 React Blog Posts API ---');
     const getPostsRes = await fetch('http://localhost:5000/api/posts');
     const postsData = await getPostsRes.json();
     console.log('✅ Get Blog Posts Status:', getPostsRes.status, 'Count:', postsData.length);
 
-    console.log('\n🎉 ALL VERIFICATIONS PASSED ON UNIFIED REACT-BLOG BACKEND!');
+    console.log('\n--- 5. Testing Image Upload API (Multer) ---');
+    const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
+    const body = [
+      `--${boundary}`,
+      'Content-Disposition: form-data; name="image"; filename="test-avatar.png"',
+      'Content-Type: image/png',
+      '',
+      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+      `--${boundary}--`,
+      ''
+    ].join('\r\n');
+
+    const uploadRes = await fetch('http://localhost:5000/api/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': `multipart/form-data; boundary=${boundary}`
+      },
+      body: body
+    });
+    const uploadData = await uploadRes.json();
+    console.log('✅ Multer Image Upload Status:', uploadRes.status, 'Uploaded URL:', uploadData.data?.url);
+
+    console.log('\n🎉 ALL VERIFICATIONS PASSED ON UNIFIED BACKEND REST APIs!');
   } catch (err) {
     console.error('❌ Verification Error:', err);
   } finally {

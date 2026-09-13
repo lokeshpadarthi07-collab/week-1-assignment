@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
 
-// Task Schema Definition for Assignment 1 (To-Do List REST API)
+// Enhanced Task Schema for To-Do Application & Task Manager Mini Project
 const taskSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false
+    },
     title: {
       type: String,
       required: [true, 'Please provide a task title'],
@@ -21,7 +26,25 @@ const taskSchema = new mongoose.Schema(
       type: String,
       enum: ['low', 'medium', 'high'],
       default: 'medium'
-    }
+    },
+    category: {
+      type: String,
+      trim: true,
+      default: 'General'
+    },
+    dueDate: {
+      type: Date
+    },
+    imageUrl: {
+      type: String,
+      default: ''
+    },
+    tags: [
+      {
+        type: String,
+        trim: true
+      }
+    ]
   },
   {
     timestamps: true

@@ -8,6 +8,7 @@ import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
@@ -23,6 +24,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// Serve Static Uploads Directory for Multer Images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Legacy JSON File Reader/Writer for Week 1 Blog Posts
 const dataFilePath = path.join(__dirname, 'data', 'posts.json');
@@ -55,11 +59,12 @@ const writeData = (data) => {
 // Root Health & Metadata Endpoint
 app.get('/', (req, res) => {
   res.json({
-    message: '🚀 React-Blog & Week 2 Backend Unified REST API is running!',
-    service: 'React Blog Backend + Week 2 REST APIs',
+    message: '🚀 React-Blog & Task Manager Backend Unified REST API is running!',
+    service: 'React Blog Backend + Week 2 REST APIs + Multer File Upload',
     timestamp: new Date().toISOString(),
     endpoints: {
       health: 'GET /api/health',
+      upload: 'POST /api/upload (Multer single file upload field "image")',
       blog: {
         posts: 'GET /api/posts',
         createPost: 'POST /api/posts',
@@ -74,7 +79,7 @@ app.get('/', (req, res) => {
       },
       tasks: {
         create: 'POST /api/tasks',
-        getAll: 'GET /api/tasks',
+        getAll: 'GET /api/tasks (Supports ?status=&priority=&category=&search=)',
         getOne: 'GET /api/tasks/:id',
         update: 'PUT /api/tasks/:id',
         delete: 'DELETE /api/tasks/:id'
@@ -92,7 +97,7 @@ app.get('/', (req, res) => {
 
 // Health Check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'React Blog & Week 2 Backend API', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', service: 'React Blog & Task Manager Backend API', timestamp: new Date().toISOString() });
 });
 
 // --- WEEK 1 BLOG POSTS REST API ROUTES ---
@@ -188,17 +193,18 @@ app.post('/api/posts/:id/comments', (req, res) => {
   res.status(201).json(newComment);
 });
 
-// --- WEEK 2 REST API ROUTES (AUTH, TASKS, NOTES) ---
+// --- WEEK 2 & MINI PROJECT REST API ROUTES (AUTH, TASKS, NOTES, UPLOAD) ---
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/notes', noteRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Error Middlewares
 app.use(notFound);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(`🚀 React-Blog & Week 2 Backend running on http://localhost:${PORT}`);
+  console.log(`🚀 React-Blog & Task Manager Backend running on http://localhost:${PORT}`);
 });
 
 export default app;

@@ -2,7 +2,7 @@ import Task from '../models/Task.js';
 
 export const createTask = async (req, res, next) => {
   try {
-    const { title, description, completed, priority } = req.body;
+    const { title, description, completed, priority, category, dueDate, imageUrl, tags } = req.body;
 
     if (!title) {
       return res.status(400).json({
@@ -12,10 +12,15 @@ export const createTask = async (req, res, next) => {
     }
 
     const task = await Task.create({
+      user: req.user ? req.user._id : undefined,
       title,
       description: description || '',
       completed: completed !== undefined ? completed : false,
-      priority: priority || 'medium'
+      priority: priority || 'medium',
+      category: category || 'General',
+      dueDate: dueDate || undefined,
+      imageUrl: imageUrl || '',
+      tags: Array.isArray(tags) ? tags : (tags ? tags.split(',').map(t => t.trim()) : [])
     });
 
     res.status(201).json({
@@ -30,7 +35,44 @@ export const createTask = async (req, res, next) => {
 
 export const getTasks = async (req, res, next) => {
   try {
-    const tasks = await Task.find().sort({ createdAt: -1 });
+    const { status, priority, category, search, userScoped } = req.query;
+
+    const query = {};
+
+    // Filter by User if specified or authenticated
+    if (userScoped === 'true' && req.user) {
+      query.user = req.user._id;
+    }
+
+    // Filter by Completion Status
+    if (status === 'completed') {
+      query.completed = true;
+    } else if (status === 'pending') {
+      query.completed = false;
+    }
+
+    // Filter by Priority
+    if (priority && ['low', 'medium', 'high'].includes(priority.toLowerCase())) {
+      query.priority = priority.toLowerCase();
+    }
+
+    // Filter by Category
+    if (category && category !== 'All') {
+      query.category = { $regex: new RegExp(category, 'i') };
+    }
+
+    // Search Query (title, description, tags)
+    if (search) {
+      const searchRegex = new RegExp(search, 'i');
+      query.$or = [
+        { title: searchRegex },
+        { description: searchRegex },
+        { category: searchRegex },
+        { tags: searchRegex }
+      ];
+    }
+
+    const tasks = await Task.find(query).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
@@ -70,7 +112,7 @@ export const getTaskById = async (req, res, next) => {
 
 export const updateTask = async (req, res, next) => {
   try {
-    const { title, description, completed, priority } = req.body;
+    const { title, description, completed, priority, category, dueDate, imageUrl, tags } = req.body;
 
     let task = await Task.findById(req.params.id);
 
@@ -85,6 +127,12 @@ export const updateTask = async (req, res, next) => {
     if (description !== undefined) task.description = description;
     if (completed !== undefined) task.completed = completed;
     if (priority !== undefined) task.priority = priority;
+    if (category !== undefined) task.category = category;
+    if (dueDate !== undefined) task.dueDate = dueDate;
+    if (imageUrl !== undefined) task.imageUrl = imageUrl;
+    if (tags !== undefined) {
+      task.tags = Array.isArray(tags) ? tags : (tags ? tags.split(',').map(t => t.trim()) : []);
+    }
 
     const updatedTask = await task.save();
 

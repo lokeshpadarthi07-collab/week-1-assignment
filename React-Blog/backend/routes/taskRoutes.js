@@ -6,8 +6,11 @@ import {
   updateTask,
   deleteTask
 } from '../controllers/taskController.js';
+import { optionalProtect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+router.use(optionalProtect);
 
 router.route('/')
   .get(getTasks)
