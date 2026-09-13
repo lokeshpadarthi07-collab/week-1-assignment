@@ -78,7 +78,10 @@ Week 2 Assignment
 - 💼 **Portfolio Website:** `https://week-1-assignment-five.vercel.app`
 - 📝 **React Blog App:** `https://week-1-assignment-kgj2.vercel.app/`
 
----
+Week 2 Assignment
+- 💼 Portfolio Website:** `https://week-1-assignment-five.vercel.app`
+- 📝 **React Blog App:** `https://week-1-assignment-ivpm-8muud5964.vercel.app/`
+
 
 ## 🚀 How to Run Locally
 
