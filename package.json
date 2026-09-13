@@ -1,0 +1,8 @@
+{
+  "name": "fullstack-assignment-repository",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd React-Blog/frontend && npm install && npm run build"
+  }
+}
