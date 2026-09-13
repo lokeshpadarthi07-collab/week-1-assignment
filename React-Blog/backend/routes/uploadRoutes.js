@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  * @route   POST /api/upload
- * @desc    Upload an image file using Multer
+ * @desc    Upload an image file using Multer (Supports Local Disk & Vercel MemoryStorage)
  * @access  Public
  */
 router.post('/', (req, res, next) => {
@@ -30,16 +30,27 @@ router.post('/', (req, res, next) => {
       });
     }
 
+    let fileUrl = '';
+    const filename = req.file.filename || req.file.originalname;
+
+    if (req.file.buffer) {
+      // Memory Storage mode (Vercel Serverless) -> Convert to base64 Data URI
+      const b64 = req.file.buffer.toString('base64');
+      fileUrl = `data:${req.file.mimetype};base64,${b64}`;
+    } else {
+      // Disk Storage mode (Local Dev)
+      fileUrl = `/uploads/${req.file.filename}`;
+    }
+
     const host = req.get('host');
     const protocol = req.protocol;
-    const fileUrl = `/uploads/${req.file.filename}`;
-    const fullUrl = `${protocol}://${host}${fileUrl}`;
+    const fullUrl = fileUrl.startsWith('data:') ? fileUrl : `${protocol}://${host}${fileUrl}`;
 
     res.status(201).json({
       success: true,
       message: 'Image uploaded successfully!',
       data: {
-        filename: req.file.filename,
+        filename,
         originalName: req.file.originalname,
         mimeType: req.file.mimetype,
         size: req.file.size,

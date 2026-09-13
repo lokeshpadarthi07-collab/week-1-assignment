@@ -1,30 +1,38 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uploadsDir = path.join(__dirname, '..', 'uploads');
 
-// Ensure uploads directory exists
+const isVercel = Boolean(process.env.VERCEL || process.env.NOW_BUILDER);
+
+const uploadsDir = isVercel
+  ? path.join(os.tmpdir(), 'uploads')
+  : path.join(__dirname, '..', 'uploads');
+
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+  try {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  } catch (e) {
+    // Ignore error in serverless environment
+  }
 }
 
-// Multer Storage Configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadsDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname).toLowerCase();
-    cb(null, `img-${uniqueSuffix}${ext}`);
-  }
-});
+// Memory Storage for Vercel Serverless, Disk Storage for Local Node
+const storage = isVercel
+  ? multer.memoryStorage()
+  : multer.diskStorage({
+      destination: (req, file, cb) => cb(null, uploadsDir),
+      filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        const ext = path.extname(file.originalname).toLowerCase();
+        cb(null, `img-${uniqueSuffix}${ext}`);
+      }
+    });
 
-// File Filter for Image Types
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png|gif|webp|svg/;
   const extName = allowedTypes.test(path.extname(file.originalname).toLowerCase());
